@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4-DOF Arduino Robotic Arm</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background: #f8f8f8;
+    color: #333;
+  }
+  header {
+    background: #0057b7;
+    color: #fff;
+    padding: 2rem;
+    text-align: center;
+  }
+  header h1 {
+    margin: 0;
+  }
+  .container {
+    max-width: 900px;
+    margin: auto;
+    padding: 2rem;
+    background: #fff;
+  }
+  h2 {
+    color: #0057b7;
+    margin-top: 2rem;
+  }
+  img, video {
+    max-width: 100%;
+    margin: 1rem 0;
+  }
+  pre {
+    background: #f0f0f0;
+    padding: 1rem;
+    overflow-x: auto;
+  }
+  a {
+    color: #0057b7;
+  }
+  footer {
+    text-align: center;
+    padding: 1rem;
+    background: #eee;
+    margin-top: 2rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>4-DOF Arduino Robotic Arm – Iteration 1</h1>
+  <p>Mechanical Design | Embedded Systems | Control Logic</p>
+</header>
+
+<div class="container">
+
+  <h2>Objective</h2>
+  <p>
+    The goal of this project was to design and build a low-cost 4-degree-of-freedom robotic arm to explore mechanical design, embedded systems, and control logic. 
+    This first iteration focuses on learning servo control, basic sensor integration, and modular software design.
+  </p>
+
+  <h2>System Overview</h2>
+  <p><strong>Controller:</strong> Arduino Nano<br>
+     <strong>Actuators:</strong> 4 micro servos (Base, Shoulder, Elbow, Gripper)<br>
+     <strong>Input:</strong> IR Remote<br>
+     <strong>Sensor:</strong> Ultrasonic distance sensor<br>
+     <strong>Power:</strong> 5V, 2A supply
+  </p>
+  <p><strong>Block Diagram:</strong></p>
+  <pre>
+IR Remote → Arduino Nano → Servo Motors → Robotic Arm Joints
+Ultrasonic Sensor → Arduino → Gripper Logic
+  </pre>
+
+  <h2>Mechanical Design</h2>
+  <ul>
+    <li>3D printed arm links (PLA)</li>
+    <li>Servo Horns:
+      <ul>
+        <li>Cross horn → Base rotation (high torque)</li>
+        <li>2 Single-arm horns → Shoulder and Elbow</li>
+        <li>Modified double-arm horn → Gripper (cut into rectangular tab for gear interface)</li>
+      </ul>
+    </li>
+    <li>Gripper tension: Thick rubber band</li>
+    <li>Gripper attached via M3 screw + nut</li>
+  </ul>
+  <p><em>Key Design Choices:</em> Modified horn created a keyed mechanical interface for torque transfer. Hot glue was used for quick assembly and rework.</p>
+  <!-- Insert images here -->
+  <!-- <img src="images/arm_overview.jpg" alt="Robotic Arm Overview"> -->
+
+  <h2>Electronics</h2>
+  <ul>
+    <li>Arduino Nano controls all servos and receives IR commands</li>
+    <li>IR Receiver decodes commands from remote</li>
+    <li>Ultrasonic Sensor triggers automated gripper motion</li>
+    <li>Servo power managed with separate 5V 2A supply</li>
+  </ul>
+  <!-- Insert wiring diagram -->
+  <!-- <img src="images/wiring_diagram.jpg" alt="Wiring Diagram"> -->
+
+  <h2>Software Architecture</h2>
+  <ul>
+    <li>Modular code: servo motion, gripper logic, ultrasonic measurement separated into functions</li>
+    <li>Servo angle tracking stored in variables for smooth incremental movement</li>
+    <li>IR remote mapped to directional movement and gripper control</li>
+    <li>Auto-gripper mode triggered by ultrasonic sensor</li>
+  </ul>
+  <!-- Insert code snippet -->
+  <!-- <pre>Insert key Arduino functions here</pre> -->
+
+  <h2>Challenges & Lessons Learned</h2>
+  <ul>
+    <li>Continuous rotation servos cannot hold precise angles → positional servos required</li>
+    <li>Hot glue bond limited torque capacity</li>
+    <li>Timing delays needed to match physical servo response</li>
+    <li>IR input decoding requires careful mapping and testing</li>
+  </ul>
+
+  <h2>Future Improvements</h2>
+  <ul>
+    <li>Replace glue with mechanical fastening for higher torque</li>
+    <li>Implement inverse kinematics for precise control</li>
+    <li>Add joystick or serial input control</li>
+    <li>Smooth servo motion using non-blocking code</li>
+  </ul>
+
+  <h2>Media</h2>
+  <!-- Insert photos or video -->
+  <!-- <img src="images/arm_demo.jpg" alt="Robotic Arm Demo"> -->
+  <!-- <video controls src="videos/arm_demo.mp4"></video> -->
+
+</div>
+
+<footer>
+  <p>Created by [Your Name] | Portfolio</p>
+</footer>
+
+</body>
+</html>
